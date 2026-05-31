@@ -1,0 +1,316 @@
+---
+// Music Player Component - Coltrane Jazz Album
+---
+
+<div class="music-player">
+  <div class="player-header">
+    <h3>♪ Now Playing</h3>
+  </div>
+  
+  <div class="album-info">
+    <div class="album-cover">
+      <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+        <rect width="200" height="200" fill="#2a2a2a"/>
+        <circle cx="100" cy="100" r="60" fill="#1a1a1a"/>
+        <circle cx="100" cy="100" r="45" fill="#3a3a3a"/>
+        <circle cx="100" cy="100" r="15" fill="#667eea"/>
+      </svg>
+    </div>
+    <div class="track-info">
+      <p class="album-name">Coltrane Jazz</p>
+      <p class="artist-name">John Coltrane</p>
+      <p class="current-track">I'll Wait and Pray</p>
+    </div>
+  </div>
+
+  <div class="controls">
+    <button class="control-btn prev-btn" title="Previous track">
+      <span>⏮</span>
+    </button>
+    <button class="control-btn play-btn" title="Play/Pause">
+      <span>⏸</span>
+    </button>
+    <button class="control-btn next-btn" title="Next track">
+      <span>⏭</span>
+    </button>
+  </div>
+
+  <div class="progress-bar">
+    <div class="progress"></div>
+  </div>
+
+  <div class="time-display">
+    <span class="current-time">0:00</span>
+    <span class="duration">4:25</span>
+  </div>
+
+  <audio id="audio-player" preload="metadata">
+    <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+  </audio>
+</div>
+
+<style>
+  .music-player {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    width: 280px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    color: white;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    z-index: 1000;
+    animation: slideIn 0.3s ease-out;
+  }
+
+  @keyframes slideIn {
+    from {
+      transform: translateX(320px) translateY(320px);
+      opacity: 0;
+    }
+    to {
+      transform: translateX(0) translateY(0);
+      opacity: 1;
+    }
+  }
+
+  .player-header {
+    text-align: center;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    padding-bottom: 0.75rem;
+  }
+
+  .player-header h3 {
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  .album-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 1.5rem;
+  }
+
+  .album-cover {
+    width: 120px;
+    height: 120px;
+    margin-bottom: 1rem;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    animation: spin 20s linear infinite;
+  }
+
+  @keyframes spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  .album-cover svg {
+    width: 100%;
+    height: 100%;
+  }
+
+  .track-info {
+    text-align: center;
+    width: 100%;
+  }
+
+  .album-name {
+    font-size: 0.85rem;
+    opacity: 0.9;
+    margin-bottom: 0.25rem;
+  }
+
+  .artist-name {
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+  }
+
+  .current-track {
+    font-size: 0.8rem;
+    opacity: 0.8;
+    font-style: italic;
+  }
+
+  .controls {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .control-btn {
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    color: white;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 1.2rem;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .control-btn:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: scale(1.1);
+  }
+
+  .control-btn:active {
+    transform: scale(0.95);
+  }
+
+  .play-btn {
+    width: 50px;
+    height: 50px;
+    font-size: 1.5rem;
+    background: rgba(255, 255, 255, 0.3);
+  }
+
+  .play-btn:hover {
+    background: rgba(255, 255, 255, 0.4);
+  }
+
+  .progress-bar {
+    width: 100%;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 2px;
+    margin-bottom: 0.5rem;
+    cursor: pointer;
+    overflow: hidden;
+  }
+
+  .progress {
+    height: 100%;
+    background: rgba(255, 255, 255, 0.8);
+    width: 0%;
+    border-radius: 2px;
+    transition: width 0.1s linear;
+  }
+
+  .time-display {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.75rem;
+    opacity: 0.8;
+  }
+
+  @media (max-width: 768px) {
+    .music-player {
+      width: 250px;
+      right: 10px;
+      bottom: 10px;
+      padding: 1rem;
+    }
+
+    .album-cover {
+      width: 100px;
+      height: 100px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .music-player {
+      width: 100%;
+      max-width: calc(100% - 20px);
+      right: 10px;
+      bottom: 10px;
+      left: 10px;
+    }
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const player = document.querySelector('.music-player');
+    const audio = document.getElementById('audio-player');
+    const playBtn = document.querySelector('.play-btn');
+    const prevBtn = document.querySelector('.prev-btn');
+    const nextBtn = document.querySelector('.next-btn');
+    const progressBar = document.querySelector('.progress-bar');
+    const progress = document.querySelector('.progress');
+    const currentTimeEl = document.querySelector('.current-time');
+    const durationEl = document.querySelector('.duration');
+
+    let isPlaying = false;
+
+    // Play/Pause button
+    playBtn?.addEventListener('click', () => {
+      if (isPlaying) {
+        audio.pause();
+        playBtn.querySelector('span').textContent = '▶';
+      } else {
+        audio.play();
+        playBtn.querySelector('span').textContent = '⏸';
+      }
+      isPlaying = !isPlaying;
+    });
+
+    // Next track simulation
+    nextBtn?.addEventListener('click', () => {
+      if (audio.currentTime < audio.duration - 1) {
+        audio.currentTime += 10;
+      }
+    });
+
+    // Previous track simulation
+    prevBtn?.addEventListener('click', () => {
+      if (audio.currentTime > 3) {
+        audio.currentTime -= 10;
+      } else {
+        audio.currentTime = 0;
+      }
+    });
+
+    // Update progress bar
+    audio.addEventListener('timeupdate', () => {
+      if (audio.duration) {
+        const percentage = (audio.currentTime / audio.duration) * 100;
+        progress.style.width = percentage + '%';
+        currentTimeEl.textContent = formatTime(audio.currentTime);
+      }
+    });
+
+    // Click on progress bar to seek
+    progressBar?.addEventListener('click', (e) => {
+      const rect = progressBar.getBoundingClientRect();
+      const percent = (e.clientX - rect.left) / rect.width;
+      audio.currentTime = percent * audio.duration;
+    });
+
+    // Update duration when loaded
+    audio.addEventListener('loadedmetadata', () => {
+      durationEl.textContent = formatTime(audio.duration);
+    });
+
+    // Auto play on page load (optional)
+    setTimeout(() => {
+      audio.play();
+      playBtn.querySelector('span').textContent = '⏸';
+      isPlaying = true;
+    }, 1000);
+
+    function formatTime(seconds) {
+      if (!seconds || isNaN(seconds)) return '0:00';
+      const mins = Math.floor(seconds / 60);
+      const secs = Math.floor(seconds % 60);
+      return `${mins}:${secs.toString().padStart(2, '0')}`;
+    }
+  });
+</script>
