@@ -1,84 +1,83 @@
-# 🔐 Generador de Contraseñas - TP-2 Serverless
+Generador de Contraseñas - TP-2 Serverless
 
-Aplicación web serverless para generar y gestionar contraseñas de 8 dígitos. Desarrollado con **Astro**, autenticación mediante **Supabase** y desplegado en **Vercel**.
+Aplicación web serverless para generar y gestionar contraseñas de 8 dígitos de forma segura. Desarrollado con Astro, autenticación y base de datos en Supabase, y desplegado en Vercel para máxima disponibilidad.
 
-## 📋 Requisitos Mínimos
+Requisitos Cumplidos
 
-- ✅ Registro de usuario, inicio y cierre de sesión
-- ✅ Crear, visualizar y editar contraseñas generadas
-- ✅ Persistencia de datos en base de datos en la nube (Supabase)
-- ✅ Interfaz responsiva y funcional
+✅ Autenticación: Registro, login y logout de usuarios  
+✅ CRUD Completo: Generar, guardar, ver y eliminar contraseñas  
+✅ Persistencia: Base de datos en la nube (Supabase)  
+✅ Seguridad: Row Level Security (RLS) en BD  
+✅ Interfaz: UI responsiva y funcional  
+✅ Deploy: Aplicación en producción en Vercel  
 
-## 🛠️ Stack Tecnológico
+Stack Tecnológico
 
-- **Frontend**: Astro + Tailwind CSS
-- **Backend/Auth/BD**: Supabase
-- **Deploy**: Vercel
-- **Control de versiones**: GitHub (ramas: main, develop, rama-alumno1, mati)
+Fronten: Astro
+Styling: CSS nativo
+Backend/Auth: Supabase
+Database: PostgreSQL en Supabase
+Deploy: Vercel
 
-## 🚀 Estructura del Proyecto
+Características Principales
 
-```
-src/
-├── pages/           # Rutas de la aplicación
-│   ├── index.astro  # Home
-│   ├── login.astro  # Login
-│   ├── signup.astro # Registro
-│   └── dashboard.astro # Dashboard principal
-├── components/      # Componentes reutilizables
-└── lib/            # Funciones de utilidad y cliente Supabase
-public/             # Archivos estáticos
-```
+Autenticación de Usuarios
+- Registro con email y contraseña
+- Login seguro con sesiones
+- Logout con limpieza de cookies
+- Protección de rutas (solo usuarios autenticados acceden a dashboard)
 
-## 🔧 Instalación Local
+Generador de Contraseñas
+- Genera contraseñas de 8 dígitos aleatorios
+- Copiar al portapapeles con 1 click
+- Interfaz limpia e intuitiva
 
-```bash
-# Clonar repositorio
-git clone https://github.com/Saikokyler/TP-2-ivo.git
-cd TP-2-ivo
+Historial de Contraseñas
+- Guardar contraseñas generadas
+- Ver todas las contraseñas guardadas por usuario
+- Mostrar fecha y hora de creación
+- Eliminar contraseñas individuales
+- Solo cada usuario puede ver sus propias contraseñas (RLS)
 
-# Instalar dependencias
-npm install
+Seguridad
+- Tokens JWT manejados por Supabase
+- Row Level Security en BD
+- Variables de entorno protegidas
+- CORS configurado correctamente
 
-# Crear archivo .env.local con credenciales Supabase
-# SUPABASE_URL=tu_url
-# SUPABASE_ANON_KEY=tu_key
+Seguridad: Row Level Security (RLS)
 
-# Iniciar servidor de desarrollo
-npm run dev
+Las contraseñas están protegidas a nivel de BD. Solo el usuario autenticado puede:
+- Ver sus propias contraseñas
+- Insertar contraseñas nuevas
+- Actualizar sus contraseñas
+- Eliminar sus contraseñas
 
-# Acceder a http://localhost:4321
-```
+Deploy en Vercel: la aplicación está desplegada automáticamente en Vercel
 
-## 📦 Comandos Disponibles
+Decisiones Técnicas
 
-| Comando | Acción |
-|---------|--------|
-| `npm run dev` | Inicia servidor en http://localhost:4321 |
-| `npm run build` | Compila para producción |
-| `npm run preview` | Vista previa de build |
+¿Por qué Astro?
+Excelente para SSR (Server-Side Rendering)
+Soporta TypeScript nativo
+Rendering por defecto estático, con server cuando lo necesitamos
+Bundle size pequeño
+Fácil de desplegar en Vercel
 
-## 👥 Equipo
+¿Por qué Supabase?
+Backend + Auth + BD en una sola plataforma
+PostgreSQL nativo (escalable)
+Row Level Security para seguridad
+API REST y Realtime
+Tier gratuito generoso para desarrollo
 
-- **Alumno 1**: rama `rama-alumno1`
-- **Alumno 2 (Mati)**: rama `mati`
-- **Develop**: Rama de integración
-- **Main**: Versión estable y desplegada
+¿Por qué Vercel?
+Deploy automático desde GitHub
+Edge Functions para APIs serverless
+Escalabilidad automática
+Excelente soporte para Astro
+Analytics y monitoring incluidos
 
-## 📅 Fases de Desarrollo
-
-1. Setup inicial (ACTUAL)
-2. Configuración Supabase
-3. Autenticación de usuarios
-4. Interfaz frontend
-5. Lógica del generador de contraseñas
-6. Persistencia en BD
-7. Deploy a Vercel
-8. Testing y refinamiento
-
-## 📝 Notas
-
-- Primera entrega: 30/4 (versión funcional en main)
-- Usar Conventional Commits y PRs para integración
-- Documentación en README debe mantenerse actualizada
-- Defensa oral evaluará decisiones técnicas y complejidad
+¿Por qué contraseñas de 8 dígitos?
+Fácil de usar pero suficientemente segura (100M combinaciones)
+Fácil de copiar/memorizar
