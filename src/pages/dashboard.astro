@@ -1,5 +1,6 @@
 ---
 import PasswordGenerator from '@/components/PasswordGenerator.astro'
+import BackgroundMusicPlayer from '@/components/BackgroundMusicPlayer.astro'
 
 // Solo accesible si estás autenticado
 const token = Astro.cookies.get('sb-auth-token')
@@ -80,5 +81,6 @@ if (!token) {
       }
     })
   </script>
+  <BackgroundMusicPlayer />
 </body>
 </html>
