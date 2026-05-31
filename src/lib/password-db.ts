@@ -5,12 +5,13 @@ export interface Password {
   id: string
   user_id: string
   password_value: string
+  site?: string | null
   created_at: string
   updated_at: string
 }
 
-// Guardar una contraseña nueva
-export async function savePassword(passwordValue: string) {
+// Guardar una contraseña nueva (ahora acepta site opcional)
+export async function savePassword(passwordValue: string, site: string | null = null) {
   try {
     const { data: { user } } = await supabase.auth.getUser()
     
@@ -24,6 +25,7 @@ export async function savePassword(passwordValue: string) {
         {
           user_id: user.id,
           password_value: passwordValue,
+          site: site || null,
         }
       ])
       .select()
@@ -65,13 +67,14 @@ export async function deletePassword(id: string) {
   }
 }
 
-// Actualizar una contraseña
-export async function updatePassword(id: string, newValue: string) {
+// Actualizar una contraseña (ahora puede actualizar valor y site)
+export async function updatePassword(id: string, newValue: string, site: string | null = null) {
   try {
     const { data, error } = await supabase
       .from('passwords')
       .update({
         password_value: newValue,
+        site: site || null,
         updated_at: new Date().toISOString()
       })
       .eq('id', id)

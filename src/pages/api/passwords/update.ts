@@ -1,8 +1,15 @@
-import { savePassword } from '@/lib/password-db'
+import { updatePassword } from '@/lib/password-db'
 
 export async function POST({ request }: any) {
   try {
-    const { password_value, site } = await request.json()
+    const { id, password_value, site } = await request.json()
+
+    if (!id) {
+      return new Response(
+        JSON.stringify({ error: 'ID es requerido' }),
+        { status: 400, headers: { 'Content-Type': 'application/json' } }
+      )
+    }
 
     if (!password_value) {
       return new Response(
@@ -11,7 +18,7 @@ export async function POST({ request }: any) {
       )
     }
 
-    const result = await savePassword(password_value, site || null)
+    const result = await updatePassword(id, password_value, site || null)
 
     if (!result.success) {
       return new Response(
