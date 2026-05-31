@@ -1,42 +1,24 @@
-# Modelica - an object-oriented language for modeling of cyber-physical systems
-# https://modelica.org/
-# Ignore temporary files, build results, simulation files
+# build output
+dist/
+# generated types
+.astro/
 
-## Modelica-specific files
-*~
-*.bak
-*.bak-mo
-*.mof
-\#*\#
-*.moe
-*.mol
+# dependencies
+node_modules/
 
-## Build artefacts
-*.exe
-*.exp
-*.o
-*.pyc
+# logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
 
-## Simulation files
-*.mat
 
-## Package files
-*.gz
-*.rar
-*.tar
-*.zip
+# environment variables
+.env
+.env.production
 
-## Dymola-specific files
-buildlog.txt
-dsfinal.txt
-dsin.txt
-dslog.txt
-dsmodel*
-dsres.txt
-dymosim*
-request
-stat
-status
-stop
-success
-*.
+# macOS-specific files
+.DS_Store
+
+# jetbrains setting folder
+.idea/
