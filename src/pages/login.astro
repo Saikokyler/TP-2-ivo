@@ -1,6 +1,5 @@
 ---
 import AuthForm from '@/components/AuthForm.astro'
-import MusicPlayer from '@/components/MusicPlayer.astro'
 
 // Si ya está autenticado, redirige a dashboard
 const session = Astro.cookies.get('sb-auth-token')
@@ -34,6 +33,5 @@ if (session) {
 </head>
 <body>
   <AuthForm type="login" />
-  <MusicPlayer />
 </body>
 </html>
